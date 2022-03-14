@@ -20,7 +20,6 @@ class VehicleDetailPage extends StatelessWidget {
       ),
       body: VehicleItem(
         vehicle: vehicle,
-        onTap: () {},
       ),
     );
   }

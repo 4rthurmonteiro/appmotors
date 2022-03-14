@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class VehicleItem extends StatelessWidget {
   final Vehicle vehicle;
-  final Function() onTap;
+  final Function()? onTap;
 
   const VehicleItem({
     Key? key,
     required this.vehicle,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -49,12 +49,14 @@ class VehicleItem extends StatelessWidget {
                       Text('${vehicle.yearFabrication}/${vehicle.yearModel}'),
                     ],
                   ),
-                  Row(
-                    children: [
-                      const Icon(Icons.car_rental),
-                      Text(vehicle.km.toString()),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     const Icon(Icons.car_rental),
+                  //     Text(vehicle.km.toString()),
+                  //   ],
+                  // ),
+                  Text('KMs: ${vehicle.km.toString()}'),
+
                   Row(
                     children: [
                       const Icon(Icons.color_lens),
