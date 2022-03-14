@@ -12,9 +12,9 @@ VehicleModel _$VehicleModelFromJson(Map<String, dynamic> json) => VehicleModel(
       model: json['Model'] as String,
       version: json['Version'] as String,
       image: json['Image'] as String,
-      km: json['KM'] as String,
+      km: json['KM'] as int,
       price: json['Price'] as String,
-      yearModel: json['YearModel'] as String,
+      yearModel: json['YearModel'] as int,
       yearFabrication: json['YearFab'] as int,
       color: json['Color'] as String,
     );

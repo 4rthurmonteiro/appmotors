@@ -26,11 +26,11 @@ class Vehicle extends Equatable {
   @JsonKey(name: 'Image')
   final String image;
   @JsonKey(name: 'KM')
-  final String km;
+  final int km;
   @JsonKey(name: 'Price')
   final String price;
   @JsonKey(name: 'YearModel')
-  final String yearModel;
+  final int yearModel;
   @JsonKey(name: 'YearFab')
   final int yearFabrication;
   @JsonKey(name: 'Color')

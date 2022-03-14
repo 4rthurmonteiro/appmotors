@@ -11,9 +11,9 @@ class VehicleModel extends Vehicle {
     required String model,
     required String version,
     required String image,
-    required String km,
+    required int km,
     required String price,
-    required String yearModel,
+    required int yearModel,
     required int yearFabrication,
     required String color,
   }) : super(
@@ -30,8 +30,16 @@ class VehicleModel extends Vehicle {
 
   factory VehicleModel.fromJson(
     Map<String, dynamic> json,
-  ) =>
-      _$VehicleModelFromJson(
-        json,
-      );
+  ) {
+    // Precisei colocar esse workaround pq a API tá http e só funciona https
+    final uri1 = Uri.parse(json['Image']);
+
+    final uri2 = uri1.replace(scheme: 'https', fragment: 'uris');
+
+    json['Image'] = uri2.toString();
+
+    return _$VehicleModelFromJson(
+      json,
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:appmotors/core/error/exceptions.dart';
 import 'package:appmotors/features/vehicle/data/models/vehicle_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class VehicleRemoteDataSource {
   Future<List<VehicleModel>> getVehicles({
@@ -33,8 +34,11 @@ class VehicleRemoteDataSourceImpl implements VehicleRemoteDataSource {
           )
           .toList();
     } on DioError catch (_) {
+      debugPrint('Error => $_');
       throw ServerException();
-    } catch (e) {
+    } catch (_) {
+      debugPrint('Error => $_');
+
       throw DartException();
     }
   }
