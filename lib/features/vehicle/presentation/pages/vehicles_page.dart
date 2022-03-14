@@ -18,12 +18,12 @@ class _VehiclesPageState extends State<VehiclesPage> {
   final _pagingController = PagingController<int, Vehicle>(firstPageKey: 1);
   late VehicleCubit _vehicleCubit;
   int page = 1;
+
   @override
   void initState() {
     super.initState();
     _vehicleCubit = getIt<VehicleCubit>()..fetch(page: page);
     _pagingController.addPageRequestListener((page) {
-      debugPrint('OnRequest => $page');
       _vehicleCubit.fetch(page: page);
     });
   }
@@ -51,20 +51,14 @@ class _VehiclesPageState extends State<VehiclesPage> {
   Widget _body() => BlocListener(
         bloc: _vehicleCubit,
         listener: (context, state) {
-          debugPrint('State => $state');
-
           if (state is VehicleError) {
             _pagingController.error =
                 'Error ao carregar veículos, por favor puxe para atualizar';
           } else if (state is VehiclesLoaded) {
-            debugPrint('New vehicles...');
-
-            final nextPageKey = page++;
-            debugPrint('NextPage => $nextPageKey');
-
             if (state.vehicles.length < 10) {
               _pagingController.appendLastPage(state.vehicles);
             } else {
+              final nextPageKey = page++;
               _pagingController.appendPage(state.vehicles, nextPageKey);
             }
           }
@@ -79,16 +73,14 @@ class _VehiclesPageState extends State<VehiclesPage> {
             builderDelegate: PagedChildBuilderDelegate<Vehicle>(
               itemBuilder: (context, vehicle, index) => VehicleItem(
                 vehicle: vehicle,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VehicleDetailPage(
-                        vehicle: vehicle,
-                      ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VehicleDetailPage(
+                      vehicle: vehicle,
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
             ),
             separatorBuilder: (BuildContext context, int index) =>
