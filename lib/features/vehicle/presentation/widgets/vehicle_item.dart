@@ -16,6 +16,7 @@ class VehicleItem extends StatelessWidget {
         onTap: onTap,
         child: Card(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 alignment: AlignmentDirectional.bottomStart,
@@ -36,10 +37,13 @@ class VehicleItem extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
                   '${vehicle.make.toUpperCase()} ${vehicle.model.toUpperCase()} ${vehicle.version.toUpperCase()}'),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -49,14 +53,7 @@ class VehicleItem extends StatelessWidget {
                       Text('${vehicle.yearFabrication}/${vehicle.yearModel}'),
                     ],
                   ),
-                  // Row(
-                  //   children: [
-                  //     const Icon(Icons.car_rental),
-                  //     Text(vehicle.km.toString()),
-                  //   ],
-                  // ),
                   Text('KMs: ${vehicle.km.toString()}'),
-
                   Row(
                     children: [
                       const Icon(Icons.color_lens),
@@ -66,6 +63,9 @@ class VehicleItem extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),

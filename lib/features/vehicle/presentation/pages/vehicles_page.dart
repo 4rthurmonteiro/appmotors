@@ -63,30 +63,23 @@ class _VehiclesPageState extends State<VehiclesPage> {
             }
           }
         },
-        // TODO(arthur): acertar o refresh
-        child: RefreshIndicator(
-          onRefresh: () => Future.sync(
-            () => _pagingController.refresh(),
-          ),
-          child: PagedListView.separated(
-            pagingController: _pagingController,
-            builderDelegate: PagedChildBuilderDelegate<Vehicle>(
-              itemBuilder: (context, vehicle, index) => VehicleItem(
-                vehicle: vehicle,
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VehicleDetailPage(
-                      vehicle: vehicle,
-                    ),
+        child: PagedListView.separated(
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<Vehicle>(
+            itemBuilder: (context, vehicle, index) => VehicleItem(
+              vehicle: vehicle,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VehicleDetailPage(
+                    vehicle: vehicle,
                   ),
                 ),
               ),
             ),
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
-              height: 30,
-            ),
+          ),
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(
+            height: 30,
           ),
         ),
       );
