@@ -1,4 +1,6 @@
+import 'package:appmotors/features/vehicle/data/datasources/fake_remote_data_source_impl.dart';
 import 'package:appmotors/features/vehicle/data/datasources/vehicle_remote_data_source.dart';
+import 'package:appmotors/features/vehicle/data/datasources/vehicle_remote_data_source_impl.dart';
 import 'package:appmotors/features/vehicle/data/repositories/vehicle_repository_impl.dart';
 import 'package:appmotors/features/vehicle/domain/repositories/vehicle_repository.dart';
 import 'package:appmotors/features/vehicle/domain/usecases/get_vehicles.dart';
@@ -9,7 +11,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final getIt = GetIt.instance;
 
-void setup() {
+void setup({
+  bool useFakeDataSource = false,
+}) {
   getIt.registerLazySingleton<Dio>(
     () => Dio(),
   );
@@ -19,9 +23,11 @@ void setup() {
   );
 
   getIt.registerLazySingleton<VehicleRemoteDataSource>(
-    () => VehicleRemoteDataSourceImpl(
-      httpClient: getIt(),
-    ),
+    () => useFakeDataSource
+        ? FakeVehicleRemoteDataSourceImpl()
+        : VehicleRemoteDataSourceImpl(
+            httpClient: getIt(),
+          ),
   );
 
   getIt.registerLazySingleton<VehicleRepository>(
