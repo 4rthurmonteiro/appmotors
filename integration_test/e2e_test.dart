@@ -1,7 +1,4 @@
 import 'package:appmotors/app/app.dart';
-import 'package:appmotors/features/vehicle/presentation/pages/vehicle_detail_page.dart';
-import 'package:appmotors/features/vehicle/presentation/pages/vehicles_page.dart';
-import 'package:appmotors/features/vehicle/presentation/widgets/vehicle_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
