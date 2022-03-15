@@ -67,6 +67,7 @@ class _VehiclesPageState extends State<VehiclesPage> {
           pagingController: _pagingController,
           builderDelegate: PagedChildBuilderDelegate<Vehicle>(
             itemBuilder: (context, vehicle, index) => VehicleItem(
+              key: Key('item_${index}_car'),
               vehicle: vehicle,
               onTap: () => Navigator.push(
                 context,
